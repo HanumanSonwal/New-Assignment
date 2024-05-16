@@ -31,7 +31,7 @@ const ResetPassword = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ newPassword, confirmPassword }),
+          body: JSON.stringify({ newPassword, confirmPassword }), 
         }
       );
 
@@ -39,6 +39,7 @@ const ResetPassword = () => {
         const data = await response.json();
         alert(data.message);
         Navigate("/");
+        localStorage.removeItem("resetToken");
       } else {
         const errorData = await response.json();
         alert(errorData.message);
