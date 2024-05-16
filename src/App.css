@@ -212,3 +212,42 @@ button:hover {
 .verify-otp-btn:hover {
   background-color: #5a4fe3;
 }
+
+
+
+/* Sidebar.css */
+.sidebar {
+  background-color: #f8f9fa;
+  color: #333;
+  padding: 20px;
+  height: 100vh;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-link {
+  color: #333;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar-link:hover {
+  background-color: #e9ecef;
+}
+
+.sidebar-link.active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.sidebar-link-icon {
+  margin-right: 10px;
+}
+
+.sidebar-link-text {
+  flex-grow: 1;
+}

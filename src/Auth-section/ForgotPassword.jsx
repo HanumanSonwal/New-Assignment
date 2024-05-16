@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link ,useNavigate} from "react-router-dom";
 import ResetPassword from "./ResetPassword";
 
 const ForgotPassword = () => {
+  const Navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [resetToken, setResetToken] = useState("");
-
-  useEffect(() => {
-    const storedResetToken = localStorage.getItem("resetToken");
-    if (storedResetToken) {
-      setResetToken(storedResetToken);
-    }
-  }, []);
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,8 +26,9 @@ const ForgotPassword = () => {
       if (response.ok) {
         const data = await response.json();
         alert(data.message);
+        console.log("Reset token:", data.resetToken); 
         setResetToken(data.resetToken);
-        localStorage.setItem("resetToken", data.resetToken);
+        // Navigate("/reset-password");
       } else {
         const errorData = await response.json();
         alert(errorData.message);
@@ -74,6 +70,9 @@ const ForgotPassword = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="">
+      {resetToken && <ResetPassword resetToken={resetToken} />}
       </div>
     </div>
   );

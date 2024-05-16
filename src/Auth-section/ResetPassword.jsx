@@ -1,19 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const ResetPassword = () => {
+const ResetPassword = ({resetToken}) => {
+  console.log(resetToken,"resetToken")
   const Navigate = useNavigate();
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-  const [resetToken, setResetToken] = useState("");
 
-  useEffect(() => {
-    const storedResetToken = localStorage.getItem("resetToken");
-    if (storedResetToken) {
-      setResetToken(storedResetToken);
-    }
-  }, []);
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,7 +35,6 @@ const ResetPassword = () => {
         const data = await response.json();
         alert(data.message);
         Navigate("/");
-        localStorage.removeItem("resetToken");
       } else {
         const errorData = await response.json();
         alert(errorData.message);
