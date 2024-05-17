@@ -43,7 +43,7 @@ const Login = () => {
         <div className="col-md-6">
           <div className="card">
             <div className="card-body">
-              <h1 className="card-title text-center ">Login</h1>
+              <h1 className=" text-center  demo-btn">Login</h1>
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
                   <label htmlFor="email">Email</label>
@@ -67,15 +67,19 @@ const Login = () => {
                     required
                   />
                   <div className="d-flex  justify-content-end mt-2">
-                    <Link to="/forgot-password">Forgot password</Link>
+                    <Link className="demo-btn" to="/forgot-password">
+                      Forgot password
+                    </Link>
                   </div>
                 </div>
-                <button type="submit" className="btn btn-success ">
+                <button type="submit" className="btn  btn-custom ">
                   Login
                 </button>
                 <p className="mt-3 ">
                   If you don't have an account, please{" "}
-                  <Link to="/signup">Sign Up</Link>
+                  <Link className="demo-btn" to="/signup">
+                    Sign Up
+                  </Link>
                 </p>
               </form>
             </div>

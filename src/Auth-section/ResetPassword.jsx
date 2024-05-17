@@ -73,7 +73,7 @@ const ResetPassword = () => {
                     required
                   />
                 </div>
-                <button type="submit" className="btn btn-success">
+                <button type="submit" className="btn btn-custom">
                   Reset Password
                 </button>
               </form>

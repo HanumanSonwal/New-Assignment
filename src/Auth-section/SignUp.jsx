@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../App.css";
 import VerifyOTP from "./VerifyOtp";
+import { Link } from "react-router-dom";
 
 const SignUp = ({ onSignUp }) => {
   const [formData, setFormData] = useState({
@@ -159,9 +160,15 @@ const SignUp = ({ onSignUp }) => {
                     onChange={handleChange}
                   />
                 </div>
-                <button type="submit" className="btn btn-success ">
+                <button type="submit" className="btn btn-custom ">
                   Sign Up
                 </button>
+                <p className="mt-3 ">
+                  If you have an account, please{" "}
+                  <Link className="demo-btn" to="/">
+                    Login
+                  </Link>
+                </p>
               </form>
             </div>
           </div>

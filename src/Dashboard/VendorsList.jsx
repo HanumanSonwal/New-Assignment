@@ -52,7 +52,7 @@ function VendorsList() {
             <th>Phone</th>
             <th>Address</th>
             <th>Description</th>
-            <th>action</th>
+            <th style={{ width: "150px" }}>action</th>
           </tr>
         </thead>
         <tbody>
@@ -72,6 +72,7 @@ function VendorsList() {
               <td>{vendor.description}</td>
               <td>
                 <button
+                  className="btn btn-success"
                   onClick={() => Navigate(`/portal/venders-list/${vendor._id}`)}
                 >
                   view item

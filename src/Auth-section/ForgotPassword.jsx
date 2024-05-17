@@ -27,9 +27,8 @@ const ForgotPassword = () => {
         alert(data.message);
         console.log("Reset token:", data.resetToken);
 
-        Navigate(`/reset-password/${data.resetToken}`);
+        // Navigate(`/reset-password/${data.resetToken}`);
         setResetToken(data.resetToken);
-        // Navigate("/reset-password");
       } else {
         const errorData = await response.json();
         alert(errorData.message);
@@ -60,20 +59,19 @@ const ForgotPassword = () => {
                   />
                 </div>
 
-                <button type="submit" className="btn btn-success">
+                <button type="submit" className="btn btn-custom">
                   Send
                 </button>
                 <p className="mt-3">
                   If you don't have an account, please{" "}
-                  <Link to="/signup">Sign Up</Link>
+                  <Link className="demo-btn" to="/signup">
+                    Sign Up
+                  </Link>
                 </p>
               </form>
             </div>
           </div>
         </div>
-      </div>
-      <div className="">
-        {/* {resetToken && <ResetPassword resetToken={resetToken} />} */}
       </div>
     </div>
   );

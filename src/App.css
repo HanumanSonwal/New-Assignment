@@ -240,8 +240,18 @@ button:hover {
 }
 
 .sidebar-link.active {
-  background-color: #007bff;
+  background-color: #ff1744;
   color: #fff;
+}
+.demo-btn{
+  color: #ff1744;
+  font-weight: bold;
+}
+.btn{
+  background-color: #ff1744 !important;
+  border: none !important;
+  color: #fff !important;
+  
 }
 
 .sidebar-link-icon {
@@ -250,6 +260,11 @@ button:hover {
 
 .sidebar-link-text {
   flex-grow: 1;
+}
+.btn-custom {
+  width: 50%;
+  margin: 0 auto !important; /* Center the button */
+  display: block !important; /* Make the button a block element */
 }
 
 
@@ -277,5 +292,6 @@ button:hover {
 }
 
 .card-title {
+  color: #ff1744 !important;
   font-weight: bold;
 }

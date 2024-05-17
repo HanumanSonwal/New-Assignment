@@ -137,7 +137,7 @@ function Profile() {
                 <div className="card-body w-50 text-center">
                   <button
                     type="button"
-                    className="btn btn-primary"
+                    className="btn "
                     data-bs-toggle="modal"
                     data-bs-target="#exampleModal"
                     data-bs-whatever="@mdo"

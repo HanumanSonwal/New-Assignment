@@ -26,7 +26,7 @@ function Sidebar() {
       );
       console.log(response, "response");
 
-      if (response.data.status == true) {
+      if (response.data.status === true) {
         localStorage.removeItem("token");
 
         Navigate("/");
