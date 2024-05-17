@@ -61,16 +61,18 @@ function Sidebar() {
           </span>
           <span className="sidebar-link-text">All Vendors</span>
         </NavLink>
-        <NavLink
+        <Nav
+          style={{ cursor: "pointer" }}
+          to="#"
           onClick={logout}
-          className="sidebar-link"
+          className="sidebar-link ms-2 "
           activeClassName="active"
         >
           <span className="sidebar-link-icon">
             <i className="fas fa-sign-out-alt"></i>
           </span>
           <span className="sidebar-link-text">Logout</span>
-        </NavLink>
+        </Nav>
       </Nav>
     </div>
   );
