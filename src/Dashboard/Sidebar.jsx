@@ -61,6 +61,16 @@ function Sidebar() {
           </span>
           <span className="sidebar-link-text">All Vendors</span>
         </NavLink>
+        <NavLink
+          to="/portal/my-cart"
+          className="sidebar-link"
+          activeClassName="active"
+        >
+          <span className="sidebar-link-icon">
+            <i className="fas fa-list"></i>
+          </span>
+          <span className="sidebar-link-text">My Cart</span>
+        </NavLink>
         <Nav
           style={{ cursor: "pointer" }}
           to="#"
