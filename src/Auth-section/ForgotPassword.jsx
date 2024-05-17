@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Link ,useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ResetPassword from "./ResetPassword";
 
 const ForgotPassword = () => {
   const Navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [resetToken, setResetToken] = useState("");
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,7 +25,9 @@ const ForgotPassword = () => {
       if (response.ok) {
         const data = await response.json();
         alert(data.message);
-        console.log("Reset token:", data.resetToken); 
+        console.log("Reset token:", data.resetToken);
+
+        Navigate(`/reset-password/${data.resetToken}`);
         setResetToken(data.resetToken);
         // Navigate("/reset-password");
       } else {
@@ -72,7 +73,7 @@ const ForgotPassword = () => {
         </div>
       </div>
       <div className="">
-      {resetToken && <ResetPassword resetToken={resetToken} />}
+        {/* {resetToken && <ResetPassword resetToken={resetToken} />} */}
       </div>
     </div>
   );

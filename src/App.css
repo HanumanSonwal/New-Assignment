@@ -251,3 +251,31 @@ button:hover {
 .sidebar-link-text {
   flex-grow: 1;
 }
+
+
+
+.profile-header {
+  /* background: url('profile-bg.jpg') no-repeat center center; */
+  background-size: cover;
+  height: 300px;
+  position: relative;
+  color: white;
+}
+
+.profile-picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 5px solid white;
+  position: absolute;
+  bottom: -75px;
+  left: 20px;
+}
+
+.profile-content {
+  margin-top: 100px;
+}
+
+.card-title {
+  font-weight: bold;
+}

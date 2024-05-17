@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-const ResetPassword = ({resetToken}) => {
-  console.log(resetToken,"resetToken")
+const ResetPassword = () => {
+  const { token } = useParams();
   const Navigate = useNavigate();
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-
-
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,13 +19,13 @@ const ResetPassword = ({resetToken}) => {
 
     try {
       const response = await fetch(
-        `https://react-node-module.onrender.com/user/forgot-password/reset/${resetToken}`,
+        `https://react-node-module.onrender.com/user/forgot-password/reset/${token}`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ newPassword, confirmPassword }), 
+          body: JSON.stringify({ newPassword, confirmPassword }),
         }
       );
 
