@@ -37,7 +37,8 @@ function VendorsList() {
     fetchVendors();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading)
+    return <div className="text-center card-title mt-5">Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
   return (
@@ -62,7 +63,11 @@ function VendorsList() {
                 <img
                   src={vendor.photoURL}
                   alt={vendor.name}
-                  style={{ width: "100px", height: "100px" }}
+                  style={{
+                    width: "60px",
+                    height: "60px",
+                    borderRadius: "10px",
+                  }}
                 />
               </td>
               <td>{vendor.name}</td>

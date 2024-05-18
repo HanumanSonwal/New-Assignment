@@ -27,10 +27,12 @@ function ShowItems() {
           `https://react-node-module.onrender.com/user/get-products/${id}`,
           config
         );
+        console.log(response, "response");
         const initialCounts = response.data.products.reduce((acc, product) => {
-          acc[product._id] = 0; // Initialize each product's count to 0
+          acc[product._id] = 0;
           return acc;
         }, {});
+        console.log(initialCounts, "initialCounts");
         setCounts(initialCounts);
         setProducts(response.data.products);
       } catch (err) {
@@ -118,7 +120,11 @@ function ShowItems() {
                 <img
                   src={product.photoURL || "https://via.placeholder.com/100"}
                   alt={product.name}
-                  style={{ width: "100px", height: "100px" }}
+                  style={{
+                    width: "60px",
+                    height: "60px",
+                    borderRadius: "10px",
+                  }}
                 />
               </td>
               <td>{product.name}</td>

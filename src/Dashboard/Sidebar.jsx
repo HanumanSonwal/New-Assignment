@@ -47,7 +47,7 @@ function Sidebar() {
           activeClassName="active"
         >
           <span className="sidebar-link-icon">
-            <i className="fas fa-home"></i>
+            <i class="fa-solid fa-user"></i>
           </span>
           <span className="sidebar-link-text">My Profile</span>
         </NavLink>
@@ -57,7 +57,7 @@ function Sidebar() {
           activeClassName="active"
         >
           <span className="sidebar-link-icon">
-            <i className="fas fa-list"></i>
+            <i className="fas fa-home"></i>
           </span>
           <span className="sidebar-link-text">All Vendors</span>
         </NavLink>
@@ -67,7 +67,7 @@ function Sidebar() {
           activeClassName="active"
         >
           <span className="sidebar-link-icon">
-            <i className="fas fa-list"></i>
+            <i class="fa-solid fa-cart-shopping"></i>
           </span>
           <span className="sidebar-link-text">My Cart</span>
         </NavLink>
@@ -77,7 +77,7 @@ function Sidebar() {
           activeClassName="active"
         >
           <span className="sidebar-link-icon">
-            <i className="fas fa-list"></i>
+            <i class="fa-solid fa-key"></i>
           </span>
           <span className="sidebar-link-text">Change Password</span>
         </NavLink>

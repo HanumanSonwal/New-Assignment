@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const ChangePassword = () => {
   const Navigate = useNavigate();
@@ -47,7 +47,7 @@ const ChangePassword = () => {
               <h1 className=" text-center  demo-btn">Change Password</h1>
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                  <label htmlFor="oldPassword">oldPassword</label>
+                  <label htmlFor="oldPassword">Old Password</label>
                   <input
                     type="Password"
                     id="oldPassword"
@@ -58,7 +58,7 @@ const ChangePassword = () => {
                   />
                 </div>
                 <div className="form-group">
-                  <label htmlFor="password">Password</label>
+                  <label htmlFor="password">New Password</label>
                   <input
                     type="password"
                     id="password"
@@ -67,21 +67,10 @@ const ChangePassword = () => {
                     onChange={(e) => setnewPassword(e.target.value)}
                     required
                   />
-                  <div className="d-flex  justify-content-end mt-2">
-                    <Link className="demo-btn" to="/forgot-password">
-                      Forgot password
-                    </Link>
-                  </div>
                 </div>
                 <button type="submit" className="btn  btn-custom ">
                   Login
                 </button>
-                <p className="mt-3 ">
-                  If you don't have an account, please{" "}
-                  <Link className="demo-btn" to="/signup">
-                    Change Password
-                  </Link>
-                </p>
               </form>
             </div>
           </div>

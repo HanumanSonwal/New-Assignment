@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 function Profile() {
@@ -11,6 +12,7 @@ function Profile() {
     firstName: "",
     lastName: "",
     phone: "",
+    bio: "",
     photo: null,
   });
 
@@ -77,6 +79,7 @@ function Profile() {
       formData.append("firstName", editProfile.firstName);
       formData.append("lastName", editProfile.lastName);
       formData.append("phone", editProfile.phone);
+      formData.append("bio", editProfile.bio);
       if (editProfile.photo) {
         formData.append("photo", editProfile.photo);
       }
@@ -87,12 +90,13 @@ function Profile() {
         config
       );
 
-      setProfile({
+      setProfile((prevProfile) => ({
+        ...prevProfile,
         ...editProfile,
         photo: editProfile.photo
           ? URL.createObjectURL(editProfile.photo)
-          : profile.photo,
-      });
+          : prevProfile.photo,
+      }));
     } catch (err) {
       setError(err.message);
     }
@@ -103,49 +107,53 @@ function Profile() {
 
   return (
     <>
-      <div className="container">
-        <div className="profile-content mt-5">
-          <div className="row">
-            <div className="col-md-8">
-              <div className="card d-flex">
-                <div className="card-body">
-                  <h5 className="card-title">Profile Details</h5>
-                  <p className="card-text">
-                    <strong>First Name:</strong> {profile.firstName}
-                  </p>
-                  <p className="card-text">
-                    <strong>Last Name:</strong> {profile.lastName}
-                  </p>
-                  <p className="card-text">
-                    <strong>Email:</strong> {profile.email}
-                  </p>
-                  <p className="card-text">
-                    <strong>Phone Number:</strong> {profile.phone}
-                  </p>
-                  <p className="card-text">
-                    <strong>Role:</strong> {profile.role}
-                  </p>
-                  {profile.photo && (
-                    <img
-                      style={{ width: "300px" }}
-                      src={profile.photo}
-                      alt="Profile"
-                      className="img-fluid"
-                    />
-                  )}
-                </div>
-                <div className="card-body w-50 text-center">
-                  <button
-                    type="button"
-                    className="btn "
-                    data-bs-toggle="modal"
-                    data-bs-target="#exampleModal"
-                    data-bs-whatever="@mdo"
-                  >
-                    Edit Profile
-                  </button>
-                </div>
-              </div>
+      <div className="container mt-5">
+        <h2 className="card-title mb-3">Profile Detail</h2>
+        <div className="identity">
+          <span
+            className="float-end card-title"
+            type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            data-bs-whatever="@mdo"
+          >
+            <i className="bi bi-pencil-square"></i>
+          </span>
+          <div className="identity-item">
+            <div className="identity-label">First Name</div>
+            <div className="identity-value">{profile.firstName}</div>
+          </div>
+          <div className="identity-item">
+            <div className="identity-label">Last Name</div>
+            <div className="identity-value">{profile.lastName}</div>
+          </div>
+          <div className="identity-item">
+            <div className="identity-label">Email</div>
+            <div className="identity-value">{profile.email}</div>
+          </div>
+          <div className="identity-item">
+            <div className="identity-label">Contact No.</div>
+            <div className="identity-value">{profile.phone}</div>
+          </div>
+          <div className="identity-item">
+            <div className="identity-label">Bio</div>
+            <div className="identity-value">{profile.bio}</div>
+          </div>
+          <div className="identity-item">
+            <div className="identity-label">Photo</div>
+            <div className="identity-value">
+              {profile.photo && (
+                <img
+                  style={{
+                    width: "100px",
+                    height: "100px",
+                    borderRadius: "10px",
+                  }}
+                  src={profile.photo}
+                  alt="Profile"
+                  className="img-fluid"
+                />
+              )}
             </div>
           </div>
         </div>
@@ -161,7 +169,7 @@ function Profile() {
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">
+              <h5 className="modal-title card-title" id="exampleModalLabel">
                 Edit Profile
               </h5>
               <button
@@ -200,19 +208,6 @@ function Profile() {
                   />
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="email" className="form-label">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    id="email"
-                    name="email"
-                    value={editProfile.email}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="mb-3">
                   <label htmlFor="phone" className="form-label">
                     Phone Number
                   </label>
@@ -226,15 +221,15 @@ function Profile() {
                   />
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="role" className="form-label">
-                    Role
+                  <label htmlFor="bio" className="form-label">
+                    Bio
                   </label>
                   <input
                     type="text"
                     className="form-control"
-                    id="role"
-                    name="role"
-                    value={editProfile.role}
+                    id="bio"
+                    name="bio"
+                    value={editProfile.bio}
                     onChange={handleChange}
                   />
                 </div>

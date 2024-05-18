@@ -1,8 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Sidebar from "./Sidebar";
-import EditProfile from "./EditProfile";
 import VendorsList from "./VendorsList";
 import ShowItems from "./ShowItems";
 import Profile from "./Profile";
