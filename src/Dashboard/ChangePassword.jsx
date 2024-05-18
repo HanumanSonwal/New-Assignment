@@ -69,7 +69,7 @@ const ChangePassword = () => {
                   />
                 </div>
                 <button type="submit" className="btn  btn-custom ">
-                  Login
+                  Change Password
                 </button>
               </form>
             </div>

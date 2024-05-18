@@ -3,6 +3,7 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { useParams } from "react-router-dom";
+import MyCart from "./MyCart";
 
 function ShowItems() {
   const { id } = useParams();
@@ -152,6 +153,7 @@ function ShowItems() {
           ))}
         </tbody>
       </table>
+      {/* <MyCart /> */}
     </div>
   );
 }
