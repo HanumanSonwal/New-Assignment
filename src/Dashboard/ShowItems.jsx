@@ -100,7 +100,7 @@ function ShowItems() {
 
   return (
     <div className="container mt-5">
-      <h1>Products</h1>
+      <h1 className="card-title mb-3">Products</h1>
       <table className="table table-bordered table-striped">
         <thead>
           <tr>
@@ -135,7 +135,7 @@ function ShowItems() {
                   </button>
                   <span className="mx-2">{counts[product._id]}</span>
                   <button
-                    className="btn btn-danger btn-sm"
+                    className="btn  btn-sm"
                     onClick={() => increment(product._id)}
                   >
                     +

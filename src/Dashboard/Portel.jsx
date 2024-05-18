@@ -7,6 +7,7 @@ import VendorsList from "./VendorsList";
 import ShowItems from "./ShowItems";
 import Profile from "./Profile";
 import MyCart from "./MyCart";
+import ChangePassword from "./ChangePassword";
 
 const Portel = () => {
   return (
@@ -20,8 +21,9 @@ const Portel = () => {
             <Routes>
               <Route path="/home" element={<Profile />} />
               <Route path="/venders-list" element={<VendorsList />} />
-              <Route path="/venders-list/:id" element={<ShowItems />} />
+              <Route path="/venders-product/:id" element={<ShowItems />} />
               <Route path="/my-cart" element={<MyCart />} />
+              <Route path="/change-password" element={<ChangePassword />} />
             </Routes>
           </div>
         </div>

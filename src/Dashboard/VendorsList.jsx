@@ -42,7 +42,7 @@ function VendorsList() {
 
   return (
     <div className="container mt-5">
-      <h1>Vendors</h1>
+      <h1 className="card-title mb-3">Vendors</h1>
       <table className="table table-bordered table-striped">
         <thead>
           <tr>
@@ -73,7 +73,9 @@ function VendorsList() {
               <td>
                 <button
                   className="btn btn-success"
-                  onClick={() => Navigate(`/portal/venders-list/${vendor._id}`)}
+                  onClick={() =>
+                    Navigate(`/portal/venders-product/${vendor._id}`)
+                  }
                 >
                   view item
                 </button>

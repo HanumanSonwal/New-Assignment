@@ -41,7 +41,7 @@ function MyCart() {
 
   return (
     <div className="container mt-5">
-      <h1>Cart Details</h1>
+      <h1 className="card-title mb-3">Cart Details</h1>
       {cart && (
         <div>
           <h2>User Information</h2>
