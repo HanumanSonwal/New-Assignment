@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import { Link, useNavigate } from "react-router-dom";
 
 function MyCart() {
+  let navigate = useNavigate();
   const [cart, setCart] = useState(null);
   const [counts, setCounts] = useState({});
   const [loading, setLoading] = useState(true);
@@ -62,7 +64,7 @@ function MyCart() {
 
       await axios.post(
         `https://react-node-module.onrender.com/user/cart/add-item`,
-        { productId, quantity: counts[productId] + 1 },
+        { productId, quantity: 1 }, // Only increment by 1
         config
       );
 
@@ -90,7 +92,7 @@ function MyCart() {
 
       await axios.put(
         `https://react-node-module.onrender.com/user/cart/remove-quantity/${productId}`,
-        {},
+        { quantity: 1 }, // Only decrement by 1
         config
       );
 
@@ -113,11 +115,13 @@ function MyCart() {
     setCart((prevCart) => ({
       ...prevCart,
       totalPrice: updatedTotalPrice,
-      items: prevCart.items.map((item) =>
-        item.product._id === productId
-          ? { ...item, quantity: item.quantity + quantityChange }
-          : item
-      ),
+      items: prevCart.items
+        .map((item) =>
+          item.product._id === productId
+            ? { ...item, quantity: item.quantity + quantityChange }
+            : item
+        )
+        .filter((item) => item.quantity > 0), // Filter out items with quantity 0
     }));
   };
 
@@ -128,7 +132,13 @@ function MyCart() {
 
   return (
     <div className="container mt-5">
-      <div className="card">
+      <Link
+        className="card-title text-decoration-underline mb-5"
+        onClick={() => navigate(-1)}
+      >
+        <i class="fa-solid fa-arrow-left"></i> Go Back
+      </Link>
+      <div className="card mt-3">
         <div className="card-body">
           <h2 className="card-title mb-3">Cart Details</h2>
           {cart && (
@@ -212,7 +222,7 @@ function MyCart() {
               </table>
 
               <h5 className="mt-4 card-title mb-3">
-                Total Price: ${cart.totalPrice.toFixed(2)}{" "}
+                Total Price: {cart.totalPrice.toFixed(2)}{" "}
                 <button className="btn btn-primary w-25 ms-4">
                   Proceed to Pay
                 </button>

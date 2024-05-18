@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { BsEye, BsEyeSlash } from "react-icons/bs";
 
 const ResetPassword = () => {
+  const [showOldPassword, setShowOldPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
   const { token } = useParams();
   const Navigate = useNavigate();
   const [newPassword, setNewPassword] = useState("");
@@ -54,24 +57,52 @@ const ResetPassword = () => {
                 <div className="form-group">
                   <label htmlFor="newPassword">New Password</label>
                   <input
-                    type="password"
+                    type={showOldPassword ? "text" : "password"}
                     id="newPassword"
                     className="form-control"
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
                     required
                   />
+                  <span
+                    className="card-title"
+                    onClick={() => setShowOldPassword(!showOldPassword)}
+                    style={{
+                      cursor: "pointer",
+                      position: "absolute",
+                      right: "27px",
+                      top: "39%",
+                      transform: "translateY(-50%)",
+                      zIndex: 99999,
+                    }}
+                  >
+                    {showOldPassword ? <BsEyeSlash /> : <BsEye />}
+                  </span>
                 </div>
                 <div className="form-group">
                   <label htmlFor="confirmPassword">Confirm Password</label>
                   <input
-                    type="password"
+                    type={showNewPassword ? "text" : "password"}
                     id="confirmPassword"
                     className="form-control"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     required
                   />
+                  <span
+                    className="card-title"
+                    onClick={() => setShowNewPassword(!showNewPassword)}
+                    style={{
+                      cursor: "pointer",
+                      position: "absolute",
+                      right: "27px",
+                      top: "69%",
+                      transform: "translateY(-50%)",
+                      zIndex: 99999,
+                    }}
+                  >
+                    {showNewPassword ? <BsEyeSlash /> : <BsEye />}
+                  </span>
                 </div>
                 <button type="submit" className="btn btn-custom">
                   Reset Password

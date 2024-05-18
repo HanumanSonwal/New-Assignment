@@ -6,8 +6,8 @@ import { useParams } from "react-router-dom";
 
 function ShowItems() {
   const { id } = useParams();
+  const [counts, setCounts] = useState({});
   const [products, setProducts] = useState([]);
-  const [addedToCart, setAddedToCart] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -27,7 +27,13 @@ function ShowItems() {
           `https://react-node-module.onrender.com/user/get-products/${id}`,
           config
         );
-
+        console.log(response, "response");
+        const initialCounts = response.data.products.reduce((acc, product) => {
+          acc[product._id] = 0;
+          return acc;
+        }, {});
+        console.log(initialCounts, "initialCounts");
+        setCounts(initialCounts);
         setProducts(response.data.products);
       } catch (err) {
         setError(err.message);
@@ -38,7 +44,8 @@ function ShowItems() {
 
     fetchProducts();
   }, [id]);
-  const addToCart = async (productId) => {
+
+  const increment = async (productId) => {
     try {
       const token = localStorage.getItem("token");
       if (!token) {
@@ -51,19 +58,42 @@ function ShowItems() {
 
       await axios.post(
         `https://react-node-module.onrender.com/user/cart/add-item`,
-        { productId, quantity: 1 },
+        { productId, quantity: 1 }, // Set quantity to 1
         config
       );
 
-      setAddedToCart((prevState) => ({
-        ...prevState,
-        [productId]: true,
+      setCounts((prevCounts) => ({
+        ...prevCounts,
+        [productId]: prevCounts[productId] + 1,
       }));
     } catch (err) {
-      const errorMessage =
-        err.response?.data?.message || "Failed to add item to cart";
-      console.error("Error adding item to cart:", errorMessage);
-      alert(errorMessage);
+      console.error("Error adding item to cart:", err);
+    }
+  };
+
+  const decrement = async (productId) => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("No token found");
+      }
+
+      const config = {
+        headers: { Authorization: `Bearer ${token}` },
+      };
+
+      await axios.put(
+        `https://react-node-module.onrender.com/user/cart/remove-quantity/${productId}`,
+        { quantity: 1 }, // Set quantity to 1
+        config
+      );
+
+      setCounts((prevCounts) => ({
+        ...prevCounts,
+        [productId]: Math.max(prevCounts[productId] - 1, 0),
+      }));
+    } catch (err) {
+      console.error("Error removing item from cart:", err);
     }
   };
 
@@ -100,17 +130,23 @@ function ShowItems() {
               <td>{product.name}</td>
               <td>{product.quantity}</td>
               <td>{product.price}</td>
-              <td style={{ width: "150px" }}>
-                {addedToCart[product._id] ? (
-                  <span className="text-success">✔</span>
-                ) : (
+              <td>
+                <div className="d-flex align-items-center">
                   <button
-                    className="btn btn-primary btn-sm"
-                    onClick={() => addToCart(product._id)}
+                    className="btn btn-success btn-sm"
+                    onClick={() => decrement(product._id)}
+                    disabled={counts[product._id] === 0}
                   >
-                    Add to Cart
+                    -
                   </button>
-                )}
+                  <span className="mx-2">{counts[product._id]}</span>
+                  <button
+                    className="btn  btn-sm"
+                    onClick={() => increment(product._id)}
+                  >
+                    +
+                  </button>
+                </div>
               </td>
             </tr>
           ))}

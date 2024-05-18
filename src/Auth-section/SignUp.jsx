@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import "../App.css";
-import VerifyOTP from "./VerifyOtp";
+import { BsEye, BsEyeSlash } from "react-icons/bs";
+
 import { Link } from "react-router-dom";
 
 const SignUp = ({ onSignUp }) => {
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -110,7 +112,7 @@ const SignUp = ({ onSignUp }) => {
                     <div className="form-group">
                       <label htmlFor="password">Password</label>
                       <input
-                        type="password"
+                        type={showPassword ? "text" : "password"}
                         id="password"
                         className="form-control"
                         name="password"
@@ -118,6 +120,20 @@ const SignUp = ({ onSignUp }) => {
                         onChange={handleChange}
                         required
                       />
+                      <span
+                        className="card-title"
+                        onClick={() => setShowPassword(!showPassword)}
+                        style={{
+                          cursor: "pointer",
+                          position: "absolute",
+                          right: "30px",
+                          top: "37%",
+                          transform: "translateY(-50%)",
+                          zIndex: 99999,
+                        }}
+                      >
+                        {showPassword ? <BsEyeSlash /> : <BsEye />}
+                      </span>
                     </div>
                   </div>
                 </div>

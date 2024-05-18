@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { BsEye, BsEyeSlash } from "react-icons/bs";
 
 const Login = () => {
   const Navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   console.log(email, password);
 
   const handleSubmit = async (e) => {
@@ -59,13 +61,27 @@ const Login = () => {
                 <div className="form-group">
                   <label htmlFor="password">Password</label>
                   <input
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     id="password"
                     className="form-control"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
                   />
+                  <span
+                    className="card-title"
+                    onClick={() => setShowPassword(!showPassword)}
+                    style={{
+                      cursor: "pointer",
+                      position: "absolute",
+                      right: "30px",
+                      top: "53%",
+                      transform: "translateY(-50%)",
+                      zIndex: 99999,
+                    }}
+                  >
+                    {showPassword ? <BsEyeSlash /> : <BsEye />}
+                  </span>
                   <div className="d-flex  justify-content-end mt-2">
                     <Link className="demo-btn" to="/forgot-password">
                       Forgot password
