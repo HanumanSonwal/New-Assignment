@@ -3,7 +3,6 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { useParams } from "react-router-dom";
-import MyCart from "./MyCart";
 
 function ShowItems() {
   const { id } = useParams();
@@ -59,7 +58,7 @@ function ShowItems() {
 
       await axios.post(
         `https://react-node-module.onrender.com/user/cart/add-item`,
-        { productId, quantity: counts[productId] + 1 },
+        { productId, quantity: 1 }, // Set quantity to 1
         config
       );
 
@@ -85,7 +84,7 @@ function ShowItems() {
 
       await axios.put(
         `https://react-node-module.onrender.com/user/cart/remove-quantity/${productId}`,
-        {},
+        { quantity: 1 }, // Set quantity to 1
         config
       );
 

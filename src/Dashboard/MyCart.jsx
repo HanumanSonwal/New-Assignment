@@ -8,7 +8,6 @@ function MyCart() {
   const [counts, setCounts] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  console.log(error);
 
   useEffect(() => {
     const fetchCartDetails = async () => {
@@ -38,7 +37,7 @@ function MyCart() {
           }, {});
           setCounts(initialCounts);
         } else {
-          throw new Error(message); // Throw an error to trigger the catch block
+          throw new Error(message);
         }
       } catch (err) {
         setError(err.message || "Failed to fetch cart details.");
