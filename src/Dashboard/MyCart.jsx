@@ -187,10 +187,10 @@ function MyCart() {
                         />
                       </td>
                       <td>{item.product.name}</td>
-                      <td>${item.product.price.toFixed(2)}</td>
+                      <td>INR. {item.product.price.toFixed(2)}</td>
                       <td>{item.quantity}</td>
                       <td>
-                        ${(item.product.price * item.quantity).toFixed(2)}
+                        INR. {(item.product.price * item.quantity).toFixed(2)}
                       </td>
                       <td>
                         <p className="m-0">{item.product.vendor.name}</p>
@@ -222,7 +222,7 @@ function MyCart() {
               </table>
 
               <h5 className="mt-4 card-title mb-3">
-                Total Price: {cart.totalPrice.toFixed(2)}{" "}
+                Total Price: INR. {cart.totalPrice.toFixed(2)}{" "}
                 <button className="btn btn-primary w-25 ms-4">
                   Proceed to Pay
                 </button>
